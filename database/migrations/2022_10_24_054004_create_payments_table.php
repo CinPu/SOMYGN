@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('student_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
-            $table->double('amount');
+            $table->double('amount',10);
             $table->timestamps();
         });
     }

@@ -16,17 +16,17 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->string('student_id')->unique();
-            $table->string('barcode');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('phone')->unique();
+            $table->string('barcode',20);
+            $table->string('name',100);
+            $table->string('email',100)->unique();
+            $table->string('phone',20)->unique();
             $table->bigInteger('major_id')->unsigned();
             $table->bigInteger('minor1_id')->unsigned();
             $table->bigInteger('minor2_id')->unsigned()->nullable();
             $table->tinyInteger('elective_course')->default(0);
-            $table->double('fee')->default(0);
-            $table->double('paid')->default(0);
-            $table->string('address')->nullable();
+            $table->double('fee',10)->default(0);
+            $table->double('paid',10)->default(0);
+            $table->string('address',100)->nullable();
             $table->timestamps();
         });
     }

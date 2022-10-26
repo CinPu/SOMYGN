@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('majors', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->double('fee')->default(0);
+            $table->string('name',100);
+            $table->double('fee',10)->default(0);
             $table->text('description')->nullable();
-            $table->string('period');
-            $table->string('certificate')->nullable();
+            $table->string('period',100);
+            $table->string('certificate',100)->nullable();
             $table->timestamps();
         });
     }
