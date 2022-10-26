@@ -1,7 +1,9 @@
 
 <!DOCTYPE html>
 
-<html class="light-style layout-menu-fixed" data-theme="theme-default" data-assets-path="http://localhost:8000/assets/" data-base-url="http://localhost:8000" data-framework="laravel" data-template="vertical-menu-laravel-template-free">
+<html class="light-style layout-menu-fixed" data-theme="theme-default" data-assets-path="http://localhost:8000/assets/"
+      data-base-url="http://localhost:8000" data-framework="laravel" data-template="vertical-menu-laravel-template-free"
+      xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="utf-8" />
@@ -27,11 +29,16 @@
     @include('layouts.header')
 </head>
 
-<body>
+
 <!-- Layout Content -->
+@if(\Illuminate\Support\Facades\Auth::check())
+    <body>
 <div class="layout-wrapper layout-content-navbar ">
     <div class="layout-container">
+
+
     @include('layouts.menu')
+
         <!-- Layout page -->
         <div class="layout-page">
             <!-- BEGIN: Navbar-->
@@ -73,11 +80,18 @@
     <!-- Drag Target Area To SlideIn Menu On Small Screens -->
     <div class="drag-target"></div>
 </div>
+
+
 <!-- / Layout wrapper -->
 <!--/ Layout Content -->
 
 @include('layouts.footer')
-
 </body>
+@else
+
+    @yield('content')
+
+
+@endif
 
 </html>

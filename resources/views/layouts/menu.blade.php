@@ -58,244 +58,41 @@
 
 
 
-        <li class="menu-item active">
-            <a href="http://localhost:8000" class="menu-link" >
+        <li class="menu-item {{ Request::is('home') ? 'active' : '' }}">
+            <a href="{{route('home')}}" class="menu-link" >
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div>Dashboard</div>
             </a>
 
-
         </li>
-
-
-
-
-
-
-
-
-        <li class="menu-item ">
-            <a href="javascript:void(0);" class="menu-link menu-toggle" >
-                <i class="menu-icon tf-icons bx bx-layout"></i>
-                <div>Layouts</div>
+        <li class="menu-item {{ Request::is('major') ? 'active' : '' }}">
+            <a href="{{route('major.index')}}" class="menu-link" >
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div>Major</div>
             </a>
 
 
-            <ul class="menu-sub">
-
-
-
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/layouts/without-menu" class="menu-link" >
-                        <div>Without menu</div>
-                    </a>
-
-
-                </li>
-
-
-
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/layouts/without-navbar" class="menu-link" >
-                        <div>Without navbar</div>
-                    </a>
-
-
-                </li>
-
-
-
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/layouts/container" class="menu-link" >
-                        <div>Container</div>
-                    </a>
-
-
-                </li>
-
-
-
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/layouts/fluid" class="menu-link" >
-                        <div>Fluid</div>
-                    </a>
-
-
-                </li>
-
-
-
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/layouts/blank" class="menu-link"  target="_blank" >
-                        <div>Blank</div>
-                    </a>
-
-
-                </li>
-            </ul>
         </li>
-
-
-
-
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Pages</span>
-        </li>
-
-
-
-
-
-
-
-
-
-        <li class="menu-item ">
-            <a href="javascript:void(0);" class="menu-link menu-toggle" >
-                <i class="menu-icon tf-icons bx bx bx-dock-top"></i>
-                <div>Account Settings</div>
+        <li class="menu-item {{ Request::is('students') ? 'active' : '' }}">
+            <a href="{{route('students.index')}}" class="menu-link" >
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div>Student</div>
             </a>
 
 
-            <ul class="menu-sub">
-
-
-
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/pages/account-settings-account" class="menu-link" >
-                        <div>Account</div>
-                    </a>
-
-
-                </li>
-
-
-
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/pages/account-settings-notifications" class="menu-link" >
-                        <div>Notifications</div>
-                    </a>
-
-
-                </li>
-
-
-
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/pages/account-settings-connections" class="menu-link" >
-                        <div>Connections</div>
-                    </a>
-
-
-                </li>
-            </ul>
         </li>
-
-
-
-
-
-
-
-
         <li class="menu-item ">
-            <a href="javascript:void(0);" class="menu-link menu-toggle" >
-                <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
-                <div>Authentications</div>
+            <a href="{{route('home')}}" class="menu-link" >
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div>Attendance</div>
             </a>
 
 
-            <ul class="menu-sub">
-
-
-
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/auth/login-basic" class="menu-link"  target="_blank" >
-                        <div>Login</div>
-                    </a>
-
-
-                </li>
-
-
-
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/auth/register-basic" class="menu-link"  target="_blank" >
-                        <div>Register</div>
-                    </a>
-
-
-                </li>
-
-
-
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/auth/forgot-password-basic" class="menu-link"  target="_blank" >
-                        <div>Forgot Password</div>
-                    </a>
-
-
-                </li>
-            </ul>
         </li>
-
-
-
-
-
-
-
-
         <li class="menu-item ">
-            <a href="javascript:void(0);" class="menu-link menu-toggle" >
-                <i class="menu-icon tf-icons bx bx-cube-alt"></i>
-                <div>Misc</div>
-            </a>
-
-
-            <ul class="menu-sub">
-
-
-
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/pages/misc-error" class="menu-link"  target="_blank" >
-                        <div>Error</div>
-                    </a>
-
-
-                </li>
-
-
-
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/pages/misc-under-maintenance" class="menu-link"  target="_blank" >
-                        <div>Under Maintenance</div>
-                    </a>
-
-
-                </li>
-            </ul>
-        </li>
-
-
-
-
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Components</span>
-        </li>
-
-
-
-
-
-
-
-
-
-        <li class="menu-item ">
-            <a href="http://localhost:8000/cards/basic" class="menu-link" >
-                <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div>Cards</div>
+            <a href="{{url('qrcode')}}" class="menu-link" >
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div>Scan</div>
             </a>
 
 
@@ -308,244 +105,232 @@
 
 
 
-        <li class="menu-item ">
-            <a href="javascript:void(0);" class="menu-link menu-toggle" >
-                <i class="menu-icon tf-icons bx bx-box"></i>
-                <div>User interface</div>
-            </a>
+        {{--<li class="menu-item ">--}}
+            {{--<a href="javascript:void(0);" class="menu-link menu-toggle" >--}}
+                {{--<i class="menu-icon tf-icons bx bx-layout"></i>--}}
+                {{--<div>Layouts</div>--}}
+            {{--</a>--}}
 
 
-            <ul class="menu-sub">
+            {{--<ul class="menu-sub">--}}
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/ui/accordion" class="menu-link" >
-                        <div>Accordion</div>
-                    </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/layouts/without-menu" class="menu-link" >--}}
+                        {{--<div>Without menu</div>--}}
+                    {{--</a>--}}
 
 
-                </li>
+                {{--</li>--}}
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/ui/alerts" class="menu-link" >
-                        <div>Alerts</div>
-                    </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/layouts/without-navbar" class="menu-link" >--}}
+                        {{--<div>Without navbar</div>--}}
+                    {{--</a>--}}
 
 
-                </li>
+                {{--</li>--}}
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/ui/badges" class="menu-link" >
-                        <div>Badges</div>
-                    </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/layouts/container" class="menu-link" >--}}
+                        {{--<div>Container</div>--}}
+                    {{--</a>--}}
 
 
-                </li>
+                {{--</li>--}}
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/ui/buttons" class="menu-link" >
-                        <div>Buttons</div>
-                    </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/layouts/fluid" class="menu-link" >--}}
+                        {{--<div>Fluid</div>--}}
+                    {{--</a>--}}
 
 
-                </li>
+                {{--</li>--}}
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/ui/carousel" class="menu-link" >
-                        <div>Carousel</div>
-                    </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/layouts/blank" class="menu-link"  target="_blank" >--}}
+                        {{--<div>Blank</div>--}}
+                    {{--</a>--}}
 
 
-                </li>
+                {{--</li>--}}
+            {{--</ul>--}}
+        {{--</li>--}}
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/ui/collapse" class="menu-link" >
-                        <div>Collapse</div>
-                    </a>
 
+        {{--<li class="menu-header small text-uppercase">--}}
+            {{--<span class="menu-header-text">Pages</span>--}}
+        {{--</li>--}}
 
-                </li>
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/ui/dropdowns" class="menu-link" >
-                        <div>Dropdowns</div>
-                    </a>
 
 
-                </li>
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/ui/footer" class="menu-link" >
-                        <div>Footer</div>
-                    </a>
+        {{--<li class="menu-item ">--}}
+            {{--<a href="javascript:void(0);" class="menu-link menu-toggle" >--}}
+                {{--<i class="menu-icon tf-icons bx bx bx-dock-top"></i>--}}
+                {{--<div>Account Settings</div>--}}
+            {{--</a>--}}
 
 
-                </li>
+            {{--<ul class="menu-sub">--}}
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/ui/list-groups" class="menu-link" >
-                        <div>List groups</div>
-                    </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/pages/account-settings-account" class="menu-link" >--}}
+                        {{--<div>Account</div>--}}
+                    {{--</a>--}}
 
 
-                </li>
+                {{--</li>--}}
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/ui/modals" class="menu-link" >
-                        <div>Modals</div>
-                    </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/pages/account-settings-notifications" class="menu-link" >--}}
+                        {{--<div>Notifications</div>--}}
+                    {{--</a>--}}
 
 
-                </li>
+                {{--</li>--}}
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/ui/navbar" class="menu-link" >
-                        <div>Navbar</div>
-                    </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/pages/account-settings-connections" class="menu-link" >--}}
+                        {{--<div>Connections</div>--}}
+                    {{--</a>--}}
 
 
-                </li>
+                {{--</li>--}}
+            {{--</ul>--}}
+        {{--</li>--}}
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/ui/offcanvas" class="menu-link" >
-                        <div>Offcanvas</div>
-                    </a>
 
 
-                </li>
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/ui/pagination-breadcrumbs" class="menu-link" >
-                        <div>Pagination &amp; Breadcrumbs</div>
-                    </a>
+        {{--<li class="menu-item ">--}}
+            {{--<a href="javascript:void(0);" class="menu-link menu-toggle" >--}}
+                {{--<i class="menu-icon tf-icons bx bx-lock-open-alt"></i>--}}
+                {{--<div>Authentications</div>--}}
+            {{--</a>--}}
 
 
-                </li>
+            {{--<ul class="menu-sub">--}}
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/ui/progress" class="menu-link" >
-                        <div>Progress</div>
-                    </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/auth/login-basic" class="menu-link"  target="_blank" >--}}
+                        {{--<div>Login</div>--}}
+                    {{--</a>--}}
 
 
-                </li>
+                {{--</li>--}}
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/ui/spinners" class="menu-link" >
-                        <div>Spinners</div>
-                    </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/auth/register-basic" class="menu-link"  target="_blank" >--}}
+                        {{--<div>Register</div>--}}
+                    {{--</a>--}}
 
 
-                </li>
+                {{--</li>--}}
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/ui/tabs-pills" class="menu-link" >
-                        <div>Tabs &amp; Pills</div>
-                    </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/auth/forgot-password-basic" class="menu-link"  target="_blank" >--}}
+                        {{--<div>Forgot Password</div>--}}
+                    {{--</a>--}}
 
 
-                </li>
+                {{--</li>--}}
+            {{--</ul>--}}
+        {{--</li>--}}
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/ui/toasts" class="menu-link" >
-                        <div>Toasts</div>
-                    </a>
 
 
-                </li>
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/ui/tooltips-popovers" class="menu-link" >
-                        <div>Tooltips &amp; popovers</div>
-                    </a>
+        {{--<li class="menu-item ">--}}
+            {{--<a href="javascript:void(0);" class="menu-link menu-toggle" >--}}
+                {{--<i class="menu-icon tf-icons bx bx-cube-alt"></i>--}}
+                {{--<div>Misc</div>--}}
+            {{--</a>--}}
 
 
-                </li>
+            {{--<ul class="menu-sub">--}}
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/ui/typography" class="menu-link" >
-                        <div>Typography</div>
-                    </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/pages/misc-error" class="menu-link"  target="_blank" >--}}
+                        {{--<div>Error</div>--}}
+                    {{--</a>--}}
 
 
-                </li>
-            </ul>
-        </li>
+                {{--</li>--}}
 
 
 
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/pages/misc-under-maintenance" class="menu-link"  target="_blank" >--}}
+                        {{--<div>Under Maintenance</div>--}}
+                    {{--</a>--}}
 
 
+                {{--</li>--}}
+            {{--</ul>--}}
+        {{--</li>--}}
 
 
 
-        <li class="menu-item ">
-            <a href="javascript:void(0);" class="menu-link menu-toggle" >
-                <i class="menu-icon tf-icons bx bx-copy"></i>
-                <div>Extended UI</div>
-            </a>
 
+        {{--<li class="menu-header small text-uppercase">--}}
+            {{--<span class="menu-header-text">Components</span>--}}
+        {{--</li>--}}
 
-            <ul class="menu-sub">
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/extended/ui-perfect-scrollbar" class="menu-link" >
-                        <div>Perfect scrollbar</div>
-                    </a>
 
 
-                </li>
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/extended/ui-text-divider" class="menu-link" >
-                        <div>Text Divider</div>
-                    </a>
+        {{--<li class="menu-item ">--}}
+            {{--<a href="http://localhost:8000/cards/basic" class="menu-link" >--}}
+                {{--<i class="menu-icon tf-icons bx bx-collection"></i>--}}
+                {{--<div>Cards</div>--}}
+            {{--</a>--}}
 
 
-                </li>
-            </ul>
-        </li>
+        {{--</li>--}}
 
 
 
@@ -554,153 +339,399 @@
 
 
 
-        <li class="menu-item ">
-            <a href="http://localhost:8000/icons/boxicons" class="menu-link" >
-                <i class="menu-icon tf-icons bx bx-crown"></i>
-                <div>Boxicons</div>
-            </a>
+        {{--<li class="menu-item ">--}}
+            {{--<a href="javascript:void(0);" class="menu-link menu-toggle" >--}}
+                {{--<i class="menu-icon tf-icons bx bx-box"></i>--}}
+                {{--<div>User interface</div>--}}
+            {{--</a>--}}
 
 
-        </li>
+            {{--<ul class="menu-sub">--}}
 
 
 
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/ui/accordion" class="menu-link" >--}}
+                        {{--<div>Accordion</div>--}}
+                    {{--</a>--}}
 
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Forms &amp; Tables</span>
-        </li>
 
+                {{--</li>--}}
 
 
 
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/ui/alerts" class="menu-link" >--}}
+                        {{--<div>Alerts</div>--}}
+                    {{--</a>--}}
 
 
+                {{--</li>--}}
 
 
 
-        <li class="menu-item ">
-            <a href="javascript:void(0);" class="menu-link menu-toggle" >
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div>Form Elements</div>
-            </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/ui/badges" class="menu-link" >--}}
+                        {{--<div>Badges</div>--}}
+                    {{--</a>--}}
 
 
-            <ul class="menu-sub">
+                {{--</li>--}}
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/forms/basic-inputs" class="menu-link" >
-                        <div>Basic Inputs</div>
-                    </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/ui/buttons" class="menu-link" >--}}
+                        {{--<div>Buttons</div>--}}
+                    {{--</a>--}}
 
 
-                </li>
+                {{--</li>--}}
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/forms/input-groups" class="menu-link" >
-                        <div>Input groups</div>
-                    </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/ui/carousel" class="menu-link" >--}}
+                        {{--<div>Carousel</div>--}}
+                    {{--</a>--}}
 
 
-                </li>
-            </ul>
-        </li>
+                {{--</li>--}}
 
 
 
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/ui/collapse" class="menu-link" >--}}
+                        {{--<div>Collapse</div>--}}
+                    {{--</a>--}}
 
 
+                {{--</li>--}}
 
 
 
-        <li class="menu-item ">
-            <a href="javascript:void(0);" class="menu-link menu-toggle" >
-                <i class="menu-icon tf-icons bx bx-detail"></i>
-                <div>Form Layouts</div>
-            </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/ui/dropdowns" class="menu-link" >--}}
+                        {{--<div>Dropdowns</div>--}}
+                    {{--</a>--}}
 
 
-            <ul class="menu-sub">
+                {{--</li>--}}
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/form/layouts-vertical" class="menu-link" >
-                        <div>Vertical Form</div>
-                    </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/ui/footer" class="menu-link" >--}}
+                        {{--<div>Footer</div>--}}
+                    {{--</a>--}}
 
 
-                </li>
+                {{--</li>--}}
 
 
 
-                <li class="menu-item ">
-                    <a href="http://localhost:8000/form/layouts-horizontal" class="menu-link" >
-                        <div>Horizontal Form</div>
-                    </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/ui/list-groups" class="menu-link" >--}}
+                        {{--<div>List groups</div>--}}
+                    {{--</a>--}}
 
 
-                </li>
-            </ul>
-        </li>
+                {{--</li>--}}
 
 
 
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/ui/modals" class="menu-link" >--}}
+                        {{--<div>Modals</div>--}}
+                    {{--</a>--}}
 
 
+                {{--</li>--}}
 
 
 
-        <li class="menu-item ">
-            <a href="http://localhost:8000/tables/basic" class="menu-link" >
-                <i class="menu-icon tf-icons bx bx-table"></i>
-                <div>Tables</div>
-            </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/ui/navbar" class="menu-link" >--}}
+                        {{--<div>Navbar</div>--}}
+                    {{--</a>--}}
 
 
-        </li>
+                {{--</li>--}}
 
 
 
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/ui/offcanvas" class="menu-link" >--}}
+                        {{--<div>Offcanvas</div>--}}
+                    {{--</a>--}}
 
-        <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Misc</span>
-        </li>
 
+                {{--</li>--}}
 
 
 
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/ui/pagination-breadcrumbs" class="menu-link" >--}}
+                        {{--<div>Pagination &amp; Breadcrumbs</div>--}}
+                    {{--</a>--}}
 
 
+                {{--</li>--}}
 
 
 
-        <li class="menu-item ">
-            <a href="https://themeselection.com/support/" class="menu-link"  target="_blank" >
-                <i class="menu-icon tf-icons bx bx-support"></i>
-                <div>Support</div>
-            </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/ui/progress" class="menu-link" >--}}
+                        {{--<div>Progress</div>--}}
+                    {{--</a>--}}
 
 
-        </li>
+                {{--</li>--}}
 
 
 
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/ui/spinners" class="menu-link" >--}}
+                        {{--<div>Spinners</div>--}}
+                    {{--</a>--}}
 
 
+                {{--</li>--}}
 
 
 
-        <li class="menu-item ">
-            <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/laravel-introduction.html" class="menu-link"  target="_blank" >
-                <i class="menu-icon tf-icons bx bx-file"></i>
-                <div>Documentation</div>
-            </a>
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/ui/tabs-pills" class="menu-link" >--}}
+                        {{--<div>Tabs &amp; Pills</div>--}}
+                    {{--</a>--}}
 
 
-        </li>
+                {{--</li>--}}
+
+
+
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/ui/toasts" class="menu-link" >--}}
+                        {{--<div>Toasts</div>--}}
+                    {{--</a>--}}
+
+
+                {{--</li>--}}
+
+
+
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/ui/tooltips-popovers" class="menu-link" >--}}
+                        {{--<div>Tooltips &amp; popovers</div>--}}
+                    {{--</a>--}}
+
+
+                {{--</li>--}}
+
+
+
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/ui/typography" class="menu-link" >--}}
+                        {{--<div>Typography</div>--}}
+                    {{--</a>--}}
+
+
+                {{--</li>--}}
+            {{--</ul>--}}
+        {{--</li>--}}
+
+
+
+
+
+
+
+
+        {{--<li class="menu-item ">--}}
+            {{--<a href="javascript:void(0);" class="menu-link menu-toggle" >--}}
+                {{--<i class="menu-icon tf-icons bx bx-copy"></i>--}}
+                {{--<div>Extended UI</div>--}}
+            {{--</a>--}}
+
+
+            {{--<ul class="menu-sub">--}}
+
+
+
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/extended/ui-perfect-scrollbar" class="menu-link" >--}}
+                        {{--<div>Perfect scrollbar</div>--}}
+                    {{--</a>--}}
+
+
+                {{--</li>--}}
+
+
+
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/extended/ui-text-divider" class="menu-link" >--}}
+                        {{--<div>Text Divider</div>--}}
+                    {{--</a>--}}
+
+
+                {{--</li>--}}
+            {{--</ul>--}}
+        {{--</li>--}}
+
+
+
+
+
+
+
+
+        {{--<li class="menu-item ">--}}
+            {{--<a href="http://localhost:8000/icons/boxicons" class="menu-link" >--}}
+                {{--<i class="menu-icon tf-icons bx bx-crown"></i>--}}
+                {{--<div>Boxicons</div>--}}
+            {{--</a>--}}
+
+
+        {{--</li>--}}
+
+
+
+
+        {{--<li class="menu-header small text-uppercase">--}}
+            {{--<span class="menu-header-text">Forms &amp; Tables</span>--}}
+        {{--</li>--}}
+
+
+
+
+
+
+
+
+
+        {{--<li class="menu-item ">--}}
+            {{--<a href="javascript:void(0);" class="menu-link menu-toggle" >--}}
+                {{--<i class="menu-icon tf-icons bx bx-detail"></i>--}}
+                {{--<div>Form Elements</div>--}}
+            {{--</a>--}}
+
+
+            {{--<ul class="menu-sub">--}}
+
+
+
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/forms/basic-inputs" class="menu-link" >--}}
+                        {{--<div>Basic Inputs</div>--}}
+                    {{--</a>--}}
+
+
+                {{--</li>--}}
+
+
+
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/forms/input-groups" class="menu-link" >--}}
+                        {{--<div>Input groups</div>--}}
+                    {{--</a>--}}
+
+
+                {{--</li>--}}
+            {{--</ul>--}}
+        {{--</li>--}}
+
+
+
+
+
+
+
+
+        {{--<li class="menu-item ">--}}
+            {{--<a href="javascript:void(0);" class="menu-link menu-toggle" >--}}
+                {{--<i class="menu-icon tf-icons bx bx-detail"></i>--}}
+                {{--<div>Form Layouts</div>--}}
+            {{--</a>--}}
+
+
+            {{--<ul class="menu-sub">--}}
+
+
+
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/form/layouts-vertical" class="menu-link" >--}}
+                        {{--<div>Vertical Form</div>--}}
+                    {{--</a>--}}
+
+
+                {{--</li>--}}
+
+
+
+                {{--<li class="menu-item ">--}}
+                    {{--<a href="http://localhost:8000/form/layouts-horizontal" class="menu-link" >--}}
+                        {{--<div>Horizontal Form</div>--}}
+                    {{--</a>--}}
+
+
+                {{--</li>--}}
+            {{--</ul>--}}
+        {{--</li>--}}
+
+
+
+
+
+
+
+
+        {{--<li class="menu-item ">--}}
+            {{--<a href="http://localhost:8000/tables/basic" class="menu-link" >--}}
+                {{--<i class="menu-icon tf-icons bx bx-table"></i>--}}
+                {{--<div>Tables</div>--}}
+            {{--</a>--}}
+
+
+        {{--</li>--}}
+
+
+
+
+        {{--<li class="menu-header small text-uppercase">--}}
+            {{--<span class="menu-header-text">Misc</span>--}}
+        {{--</li>--}}
+
+
+
+
+
+
+
+
+
+        {{--<li class="menu-item ">--}}
+            {{--<a href="https://themeselection.com/support/" class="menu-link"  target="_blank" >--}}
+                {{--<i class="menu-icon tf-icons bx bx-support"></i>--}}
+                {{--<div>Support</div>--}}
+            {{--</a>--}}
+
+
+        {{--</li>--}}
+
+
+
+
+
+
+
+
+        {{--<li class="menu-item ">--}}
+            {{--<a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/laravel-introduction.html" class="menu-link"  target="_blank" >--}}
+                {{--<i class="menu-icon tf-icons bx bx-file"></i>--}}
+                {{--<div>Documentation</div>--}}
+            {{--</a>--}}
+
+
+        {{--</li>--}}
     </ul>
 </aside>

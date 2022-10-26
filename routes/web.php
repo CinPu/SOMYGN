@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,13 +15,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('students', \App\Http\Controllers\StudentController::class);
+    Route::resource('attendance', \App\Http\Controllers\AttendanceController::class);
+    Route::resource('major', \App\Http\Controllers\MajorController::class);
+    Route::resource('user', \App\Http\Controllers\UserController::class);
+    Route::get('qrcode',[\App\Http\Controllers\HomeController::class,'qr_scanner']);
+});
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
