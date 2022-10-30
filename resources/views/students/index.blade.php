@@ -12,13 +12,16 @@
         </div>
 
 
-        <div class="table text-nowrap">
+        <div class="table text-nowrap" style="overflow:auto;">
             <table class="table" >
                 <thead>
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Class</th>
+                    <th>Major</th>
+                    <th>Minor One</th>
+                    <th>Minor Two</th>
+                    <th>Elective Course</th>
                     <th>Total Fee</th>
                     <th>Paid Fee</th>
                     <th>Due Fee</th>
@@ -32,6 +35,9 @@
                        <td>
                            {{$st->major->name}}
                        </td>
+                       <td>{{$st->minor1->name}}</td>
+                       <td>{{$st->minor2->name??'N/A'}}</td>
+                       <td>{{$st->elective_course==0?'N/A':'Take'}}</td>
                        <td><span class="badge bg-label-primary me-1">{{$st->fee}}</span></td>
                        <td><span class="badge bg-label-success me-1">{{$st->paid}}</span></td>
                        <td><span class="badge bg-label-danger me-1">{{$st->fee-$st->paid}}</span></td>

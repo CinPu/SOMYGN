@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('major', \App\Http\Controllers\MajorController::class);
     Route::resource('user', \App\Http\Controllers\UserController::class);
     Route::get('qrcode',[\App\Http\Controllers\HomeController::class,'qr_scanner']);
+    Route::resource('prefix',\App\Http\Controllers\PrefixController::class);
 });
 
 Auth::routes();

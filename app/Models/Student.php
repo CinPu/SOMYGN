@@ -15,10 +15,20 @@ class Student extends Model
         'email',
         'fee',
         'major_id',
+        'minor1_id',
+        'minor2_id',
+        'elective_course',
         'paid',
-        'address'
+        'address',
+        'barcode'
         ];
     public function major(){
         return $this->belongsTo(Major::class,'major_id','id');
+    }
+    public function minor1(){
+        return $this->belongsTo(Major::class,'minor1_id','id');
+    }
+    public function minor2(){
+        return $this->belongsTo(Major::class,'minor2_id','id');
     }
 }

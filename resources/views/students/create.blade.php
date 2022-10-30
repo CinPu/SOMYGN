@@ -14,10 +14,10 @@
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                                 <span id="basic-icon-default-fullname2" class="input-group-text"><i class="fa fa-id-card text-dark"></i></span>
-                                <input type="text" class="form-control" name="student_id" value="{{date('Y').'-'.$student_id}}" id="basic-icon-default-fullname" placeholder="John Doe" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" readonly/>
+                                <input type="text" class="form-control" name="student_id" value="{{$student_id}}" id="basic-icon-default-fullname" placeholder="John Doe" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" readonly/>
                             </div>
                             @error('student_id')
-                            <div class="form-text">{{$message}}</div>
+                            <div class="form-text text-danger">{{$message}}</div>
                             @enderror
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                                 <input type="text" class="form-control" name="name" id="basic-icon-default-fullname" placeholder="John Doe" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
                             </div>
                             @error('name')
-                            <div class="form-text">{{$message}}</div>
+                            <div class="form-text text-danger">{{$message}}</div>
                             @enderror
                         </div>
                     </div>
@@ -45,8 +45,49 @@
                                 </select>
                             </div>
                             @error('major_id')
+                            <div class="form-text text-danger">Select Major</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Minor One</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-company2" class="input-group-text"><i class="fa fa-file-text"></i></span>
+                                <select name="minor1_id" class="form-select" id="major" required>
+                                    @foreach($major as $mj)
+                                        <option value="{{$mj->id}}">{{$mj->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @error('minor1_id')
                             <div class="form-text">Select Major</div>
                             @enderror
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-icon-default-company">Minor Two(optional)</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+                                <span id="basic-icon-default-company2" class="input-group-text"><i class="fa fa-file-text"></i></span>
+                                <select name="minor2_id" class="form-select" id="major">
+                                    <option value="">Select Minor Two</option>
+                                    @foreach($major as $mj)
+                                        <option value="{{$mj->id}}">{{$mj->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="basic-icon-default-email">Elective Course</label>
+                        <div class="col-sm-10">
+                            <div class="input-group input-group-merge">
+
+                                <input type="checkbox" name="elective_course" value="1">
+                            </div>
+
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -57,7 +98,7 @@
                                 <input type="text" id="basic-icon-default-email" name="email" class="form-control" placeholder="Enter Email" aria-label="john.doe" aria-describedby="basic-icon-default-email2" />
                             </div>
                            @error('email')
-                            <div class="form-text">{{$message}}</div>
+                            <div class="form-text text-danger">{{$message}}</div>
                             @enderror
                         </div>
                     </div>
@@ -68,10 +109,11 @@
                                 <span id="basic-icon-default-phone2" class="input-group-text"><i class="fa fa-phone"></i></span>
                                 <input type="text" name="phone" id="basic-icon-default-phone" class="form-control phone-mask" placeholder="658 799 8941" aria-label="658 799 8941" aria-describedby="basic-icon-default-phone2" />
                             </div>
+                            @error('phone')
+                            <div class="form-text text-danger">{{$message}}</div>
+                            @enderror
                         </div>
-                        @error('phone')
-                        <div class="form-text">{{$message}}</div>
-                        @enderror
+
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-2 form-label" for="basic-icon-default-phone">Fee</label>
@@ -80,10 +122,11 @@
                                 <span id="basic-icon-default-phone2" class="input-group-text"><i class="fa fa-money-bill"></i></span>
                                 <input type="text" name="fee" id="basic-icon-default-phone" class="form-control phone-mask" placeholder="" aria-label="658 799 8941" aria-describedby="basic-icon-default-phone2" />
                             </div>
+                            @error('fee')
+                            <div class="form-text text-danger">{{$message}}</div>
+                            @enderror
                         </div>
-                        @error('fee')
-                        <div class="form-text">{{$message}}</div>
-                        @enderror
+
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-2 form-label" for="basic-icon-default-phone">Cash Down</label>
@@ -92,15 +135,16 @@
                                 <span id="basic-icon-default-phone2" class="input-group-text"><i class="fa fa-money-bill"></i></span>
                                 <input type="text" name="paid" id="basic-icon-default-phone" class="form-control phone-mask" placeholder="" aria-label="658 799 8941" aria-describedby="basic-icon-default-phone2" />
                             </div>
+                            @error('fee')
+                            <div class="form-text text-danger">{{$message}}</div>
+                            @enderror
                         </div>
-                        @error('fee')
-                        <div class="form-text">{{$message}}</div>
-                        @enderror
+
                     </div>
 
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-primary">Send</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
                 </form>

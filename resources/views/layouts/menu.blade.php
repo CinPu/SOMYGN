@@ -51,13 +51,6 @@
 
     <ul class="menu-inner py-1">
 
-
-
-
-
-
-
-
         <li class="menu-item {{ Request::is('home') ? 'active' : '' }}">
             <a href="{{route('home')}}" class="menu-link" >
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>

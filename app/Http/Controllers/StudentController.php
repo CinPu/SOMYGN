@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Major;
 use App\Models\Student;
+use App\Models\StudentIdPrefix;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -15,7 +16,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $student=Student::with('major')->get();
+        $student=Student::with('major','minor1','minor2')->get();
         return view('students.index',compact('student'));
     }
 
@@ -27,7 +28,17 @@ class StudentController extends Controller
     public function create()
     {
         $major=Major::all();
-        $student_id=random_int(1000,9999);
+        $prefixs = StudentIdPrefix::first();
+        $student = Student::orderBy('id', 'desc')->first();
+        if ($student != null) {
+            // Sum 1 + last id
+
+                $student->student_id++;
+                $student_id = $student->student_id;
+
+        } else {
+            $student_id = $prefixs->prefix . "-0001";
+        }
         return view('students.create',compact('major','student_id'));
     }
 
@@ -39,6 +50,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->all());
         $this->validate($request,[
             'name'=>'required',
             'student_id'=>'required',
@@ -46,11 +58,14 @@ class StudentController extends Controller
             'email'=>'required',
             'fee'=>'required',
             'major_id'=>'required',
+            'minor1_id'=>'required',
             'paid'=>'required',
 
 
         ]);
-        Student::create($request->all());
+        $data=$request->all();
+        $data['barcode']=random_int(1000000000000,9999999999999);
+        Student::create($data);
         return redirect(route('students.index'))->with('message','Success');
     }
 

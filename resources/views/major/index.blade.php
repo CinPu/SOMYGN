@@ -4,10 +4,10 @@
     <div class="card">
         <div class="row">
             <div class="col">
-                <h5 class="card-header">Students</h5>
+                <h5 class="card-header">Majors</h5>
             </div>
             <div class="col my-2 mx-2">
-                <a href="{{route('students.create')}}" class="btn btn-primary float-end">Add</a>
+                <a href="{{route('major.create')}}" class="btn btn-primary float-end">Add</a>
             </div>
         </div>
 

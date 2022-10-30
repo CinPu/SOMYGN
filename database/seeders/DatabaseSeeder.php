@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Major;
+use App\Models\StudentIdPrefix;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -24,5 +26,6 @@ class DatabaseSeeder extends Seeder
             'name'=>'Admin',
             'phone'=>'09783664278'
          ]);
+         StudentIdPrefix::create(['prefix'=>'SOM-B001']);
     }
 }
