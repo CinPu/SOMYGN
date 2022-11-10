@@ -16,8 +16,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user=User::with('major')->get();
-        return view('user.index',compact('user'));
+        $users=User::with('major')->get();
+        return view('user.index',compact('users'));
     }
 
     /**
@@ -28,7 +28,7 @@ class UserController extends Controller
     public function create()
     {
         $major=Major::all();
-        return view('user.crate',compact('major'));
+        return view('user.create',compact('major'));
     }
 
     /**
@@ -43,11 +43,18 @@ class UserController extends Controller
             'name'=>'required',
             'email'=>'required',
             'phone'=>'required',
-            'password'=>'required',
+            'pass'=>'required',
 
         ]);
-        $request->password=Hash::make($request->password);
-        User::create($request->all());
+        $data=$request->all();
+        if ($request->hasfile('profile')) {
+            $file = $request->file('profile');
+            $name=$file->getClientOriginalName();
+            $file->move(public_path() . '/assets/profile/',$name);
+            $data['profile'] = $name;
+        }
+        $data['password']=Hash::make($request->pass);
+        User::create($data);
         return redirect(route('user.index'))->with('message','Successful');
     }
 
@@ -72,7 +79,8 @@ class UserController extends Controller
     public function edit($id)
     {
         $user=User::with('major')->where('id',$id)->firstOrFail();
-        return view('user.edit',compact('user'));
+        $major=Major::all();
+        return view('user.edit',compact('user','major'));
     }
 
     /**
@@ -92,7 +100,14 @@ class UserController extends Controller
 
         ]);
         $user=User::with('major')->where('id',$id)->firstOrFail();
-        $user->update($request->all());
+        $data=$request->all();
+        if ($request->hasfile('profile')) {
+            $file = $request->file('profile');
+            $name=$file->getClientOriginalName();
+            $file->move(public_path() . '/assets/profile/',$name);
+            $data['profile'] = $name;
+        }
+        $user->update($data);
         return redirect(route('user.index'))->with('message','Successful');
         //
     }

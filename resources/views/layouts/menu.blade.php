@@ -40,10 +40,7 @@
                     </span>
             <span class="app-brand-text demo menu-text fw-bold ms-2">SOM</span>
         </a>
-
-        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-autod-block d-xl-none">
-            <i class="bx bx-chevron-left bx-sm align-middle"></i>
-        </a>
+        
     </div>
 
 
@@ -55,6 +52,13 @@
             <a href="{{route('home')}}" class="menu-link" >
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div>Dashboard</div>
+            </a>
+
+        </li>
+        <li class="menu-item {{ Request::is('user') ? 'active' : '' }}">
+            <a href="{{route('user.index')}}" class="menu-link" >
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div>User</div>
             </a>
 
         </li>

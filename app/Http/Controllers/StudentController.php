@@ -64,6 +64,12 @@ class StudentController extends Controller
 
         ]);
         $data=$request->all();
+        if ($request->hasfile('profile')) {
+            $file = $request->file('profile');
+            $name=$file->getClientOriginalName();
+            $file->move(public_path() . '/assets/profile/',$name);
+            $data['profile'] = $name;
+        }
         $data['barcode']=random_int(1000000000000,9999999999999);
         Student::create($data);
         return redirect(route('students.index'))->with('message','Success');
@@ -90,7 +96,8 @@ class StudentController extends Controller
     public function edit($id)
     {
         $student=Student::with('major')->where("id",$id)->firstOrFail();
-        return view('students.edit',compact('student'));
+        $major=Major::all();
+        return view('students.edit',compact('student','major'));
     }
 
     /**
@@ -114,8 +121,15 @@ class StudentController extends Controller
 
         ]);
         $student=Student::where('id',$id)->firstOrFail();
-        $student->update($request->all());
-        return redirect(route('student.index'))->with('message','Success');
+        $data=$request->all();
+        if ($request->hasfile('profile')) {
+            $file = $request->file('profile');
+            $name=$file->getClientOriginalName();
+            $file->move(public_path() . '/assets/profile/',$name);
+            $data['profile'] = $name;
+        }
+        $student->update($data);
+        return redirect(route('students.index'))->with('message','Success');
     }
 
     /**
@@ -128,6 +142,6 @@ class StudentController extends Controller
     {
         $student=Student::where('id',$id)->firstOrFail();
         $student->delete();
-        return redirect(route('student.index'))->with('message','Success');
+        return redirect(route('students.index'))->with('message','Success');
     }
 }

@@ -26,6 +26,6 @@ class DatabaseSeeder extends Seeder
             'name'=>'Admin',
             'phone'=>'09783664278'
          ]);
-         StudentIdPrefix::create(['prefix'=>'SOM-B001']);
+         StudentIdPrefix::create(['prefix'=>'SOM-B006']);
     }
 }

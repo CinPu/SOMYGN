@@ -101,6 +101,6 @@ class MajorController extends Controller
     {
         $major=Major::where('id',$id)->firstOrFail();
         $major->delete();
-        return redirect(route('majors'))->with('message','Successful');
+        return redirect(route('major.index'))->with('message','Successful');
     }
 }

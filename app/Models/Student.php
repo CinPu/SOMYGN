@@ -20,7 +20,8 @@ class Student extends Model
         'elective_course',
         'paid',
         'address',
-        'barcode'
+        'barcode',
+        'profile'
         ];
     public function major(){
         return $this->belongsTo(Major::class,'major_id','id');

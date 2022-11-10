@@ -21,7 +21,7 @@
                             <td><strong>{{$st->student_id}}</strong></td>
                             <td>{{$st->name}}</td>
                             <td>
-                                {{$st->major->name}}
+                                {{$st->major->name??'Removed This Major'}}
                             </td>
                             <td><span class="badge bg-label-primary me-1">{{$st->fee}}</span></td>
                             <td><span class="badge bg-label-success me-1">{{$st->paid}}</span></td>
