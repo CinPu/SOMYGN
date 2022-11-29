@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Student Create')
+@section('title','Student Details')
 @section('content')
 
     <div class="col-xxl">
@@ -51,7 +51,7 @@
                                     Minor
                                 </div>
                                 <div class="col-8">
-                                    {{$student->minor1->name}},{{$student->minor2->name}}
+                                    {{$student->minor1->name??'N/A'}},{{$student->minor2->name??''}}
                                 </div>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
 
                     </div>
                     <div class="col-6">
-                        {{$student->minor1->name}},{{$student->minor2->name}}
+                        {{$student->minor1->name??'N/A'}},{{$student->minor2->name??'N/A'}}
                     </div>
 
                 </div>

@@ -83,7 +83,8 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        $student=Student::with('major')->where('id',$id)->firstOrFail();
+        $student=Student::with('major','minor1','minor2')->where('id',$id)->firstOrFail();
+//        dd($student);
         return view('students.show',compact('student'));
     }
 
@@ -112,12 +113,12 @@ class StudentController extends Controller
         $this->validate($request,[
             'name'=>'required',
             'student_id'=>'required',
-            'phone',
-            'email',
-            'fee',
-            'major_id',
-            'paid',
-            'address',
+            'phone'=>'required',
+            'email'=>'required',
+            'fee'=>'nullable',
+            'major_id'=>'required',
+            'paid'=>'required',
+            'address'=>'required',
 
         ]);
         $student=Student::where('id',$id)->firstOrFail();

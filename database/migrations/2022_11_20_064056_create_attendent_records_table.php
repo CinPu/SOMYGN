@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('attendances', function (Blueprint $table) {
+        Schema::create('attendent_records', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('class_id')->unsigned();
-            $table->dateTime('date')->default(\Carbon\Carbon::now());
-            $table->dateTime('class_start_time');
-            $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('attendance_id')->unsigned();
+            $table->bigInteger('student_id')->unsigned();
+            $table->dateTime('present_time')->nullable();
+            $table->tinyInteger('present')->default(0);
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attendances');
+        Schema::dropIfExists('attendent_records');
     }
 };

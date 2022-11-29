@@ -79,21 +79,13 @@
 
         </li>
         <li class="menu-item ">
-            <a href="{{route('home')}}" class="menu-link" >
+            <a href="{{route('attendance.index')}}" class="menu-link" >
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div>Attendance</div>
             </a>
 
 
         </li>
-        <li class="menu-item ">
-            <a href="{{url('qrcode')}}" class="menu-link" >
-                <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div>Scan</div>
-            </a>
-
-
-        </li>
 
 
 
@@ -102,24 +94,6 @@
 
 
 
-        {{--<li class="menu-item ">--}}
-            {{--<a href="javascript:void(0);" class="menu-link menu-toggle" >--}}
-                {{--<i class="menu-icon tf-icons bx bx-layout"></i>--}}
-                {{--<div>Layouts</div>--}}
-            {{--</a>--}}
-
-
-            {{--<ul class="menu-sub">--}}
-
-
-
-                {{--<li class="menu-item ">--}}
-                    {{--<a href="http://localhost:8000/layouts/without-menu" class="menu-link" >--}}
-                        {{--<div>Without menu</div>--}}
-                    {{--</a>--}}
-
-
-                {{--</li>--}}
 
 
 

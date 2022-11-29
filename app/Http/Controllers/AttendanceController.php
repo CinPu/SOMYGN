@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Attendance;
+use App\Models\AttendentRecord;
 use App\Models\Major;
 use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use League\Flysystem\Exception;
 
 class AttendanceController extends Controller
 {
@@ -16,10 +18,9 @@ class AttendanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $date=$request->date??Carbon::today();
-        $attendance=Attendance::with('student','major')->whereDate('date',$date)->get();
+        $attendance=Attendance::with('major','user')->get();
         return view('attendance.index',compact('attendance'));
     }
 
@@ -31,7 +32,7 @@ class AttendanceController extends Controller
     public function create()
     {
         $major=Major::all();
-        return view('attendance.crate',compact('major'));
+        return view('attendance.create',compact('major'));
     }
 
     /**
@@ -42,42 +43,31 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->all());
         $this->validate($request,[
-           'start_date'=>'required',
-           'end_date'=>'required',
+           'start_time'=>'required',
            'major_id'=>'required',
+            'date'=>'required'
         ]);
-        $student=Student::all();
-        $start=Carbon::parse($request->start_date);
-        $end=Carbon::parse($request->end_date);
-        $days = $start->diffInDays($end);
-        for($i=0;$i<$days;$i++){
-            foreach ($student as $st){
-                $attendance=new Attendance();
-                $attendance->student_id=$st->id;
-                $attendance->class_id=$st->major_id;
-                $attendance->date=$start->addDay($i);
-                $attendance->user_id=Auth::user()->id;
-                $attendance->save();
+       try {
+           $attendance = new Attendance();
+           $attendance->date = $request->date;
+           $attendance->class_start_time = $request->start_time;
+           $attendance->user_id = Auth::user()->id;
+           $attendance->class_id = $request->major_id;
+           $attendance->save();
+           $student = Student::orWhere('major_id',$request->major_id)->orWhere('minor1_id',$request->major_id)->orWhere('minor2_id',$request->major_id)->get();
+           foreach ($student as $st) {
+               $record = new AttendentRecord();
+               $record->attendance_id = $attendance->id;
+               $record->student_id = $st->id;
+               $record->save();
+           }
+           return redirect(route('attendance.index'))->with('message','Crated attendance successful');
+       }catch (Exception $e){
+           echo $e->getMessage();
+       }
 
-                $attendance=new Attendance();
-                $attendance->student_id=$st->id;
-                $attendance->class_id=$st->minor1_id;
-                $attendance->date=$start->addDay($i);
-                $attendance->user_id=Auth::user()->id;
-                $attendance->save();
-                if($st->minor2_id!=null){
-                    $attendance=new Attendance();
-                    $attendance->student_id=$st->id;
-                    $attendance->major_id=$st->minor2_id;
-                    $attendance->date=$start->addDay($i);
-                    $attendance->user_id=Auth::user()->id;
-                    $attendance->save();
-                }
-
-            }
-        }
-        return redirect(route('attendance.index'))->with('message','Crated attendance for'.$days.'successful');
 
 
     }
@@ -90,7 +80,25 @@ class AttendanceController extends Controller
      */
     public function show($id)
     {
-        //
+        $attendance=Attendance::with('major')->where('id',$id)->first();
+        $records=AttendentRecord::with('student')->where('attendance_id',$id)->get();
+        return view('attendance.show',compact('attendance','records'));
+    }
+ public function record($id)
+    {
+        $attendance=Attendance::with('major')->where('id',$id)->first();
+        $records=AttendentRecord::with('student')->where('attendance_id',$id)->get();
+        return view('qrcode',compact('attendance','records'));
+    }
+    public function recorded(Request $request,$id)
+    {
+//        dd($request->all());
+        $student=Student::where('student_id',$request->student_id)->first();
+        $records=AttendentRecord::with('student')->where('attendance_id',$id)->where('student_id',$student->id)->first();
+        $records->present=1;
+        $records->present_time=Carbon::now();
+        $records->update();
+        return response()->json(['msg','Successful']);
     }
 
     /**
@@ -127,6 +135,8 @@ class AttendanceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $attendence=Attendance::where('id',$id)->first();
+        $attendence->delete();
+        return redirect()->back();
     }
 }
