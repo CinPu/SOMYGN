@@ -30,14 +30,34 @@ class StudentController extends Controller
         $major=Major::all();
         $prefixs = StudentIdPrefix::first();
         $student = Student::orderBy('id', 'desc')->first();
+//        if ($student != null) {
+//            // Sum 1 + last id
+//
+//                $student->student_id++;
+//                $student_id = $student->student_id;
+//
+//        } else {
+//            $student_id = $prefixs->prefix . "-0001";
+//        }
         if ($student != null) {
             // Sum 1 + last id
+            if ($prefixs != null) {
+                $ischange = $student->student_id;
+                $ischange = explode("-", $ischange);
+                $combine=$ischange[0].'-'.$ischange[1];
 
+                if ( $combine==$prefixs->prefix) {
+                    $student->student_id++;
+                    $student_id = $student->student_id;
+                } else {
+                    $student_id = ($prefixs->prefix ?: 'SOM-B001') . "-0001";
+                }
+            } else {
                 $student->student_id++;
                 $student_id = $student->student_id;
-
+            }
         } else {
-            $student_id = $prefixs->prefix . "-0001";
+            $student_id = ($prefixs->prefix ?: 'SOM-B001') . "-0001";
         }
         return view('students.create',compact('major','student_id'));
     }

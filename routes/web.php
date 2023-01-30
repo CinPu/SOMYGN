@@ -30,7 +30,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('qrcode',[\App\Http\Controllers\HomeController::class,'qr_scanner']);
     Route::resource('prefix',\App\Http\Controllers\PrefixController::class);
     Route::get('record/attendance/{id}',[\App\Http\Controllers\AttendanceController::class,'record']);
-    Route::post('record/attendance/{id}',[\App\Http\Controllers\AttendanceController::class,'recorded']);
+    Route::post('record/attendance',[\App\Http\Controllers\AttendanceController::class,'recorded']);
+    Route::get('change/password/{id}',[\App\Http\Controllers\UserController::class,'changePass']);
+    Route::get('student/prefix',[\App\Http\Controllers\SettingController::class,'prefix']);
+    Route::post('prefix/update/{id}',[\App\Http\Controllers\SettingController::class,'prefixUpdate']);
 });
 
 Auth::routes();

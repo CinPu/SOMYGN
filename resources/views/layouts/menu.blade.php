@@ -86,6 +86,23 @@
 
 
         </li>
+        <li class="menu-item">
+            <div class="row">
+                <div class="col-12">
+                    <video id="preview" class="text-center"  style="width: 230px;height: 230px;padding-left: 30px;"></video>
+                </div>
+                <div class="col-12 text-center">
+                    <div class="btn-group btn-group-toggle mb-5" data-toggle="buttons">
+                        <label class="btn btn-primary active">
+                            <input type="radio" name="options" value="1" autocomplete="off" checked> Front
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="options" value="2" autocomplete="off"> Back
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </li>
 
 
 

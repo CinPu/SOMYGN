@@ -10,13 +10,13 @@
                 <form action="{{route('user.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Student ID</label>
+                        <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Profile Picture</label>
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                                 <span id="basic-icon-default-fullname2" class="input-group-text"><i class="fa fa-id-card text-dark"></i></span>
-                                <input type="file" class="form-control" name="profile"id="basic-icon-default-fullname" placeholder="John Doe" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" readonly/>
+                                <input type="file" class="form-control" name="profile" id="basic-icon-default-fullname" placeholder="John Doe" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" readonly/>
                             </div>
-                            @error('student_id')
+                            @error('profile')
                             <div class="form-text text-danger">{{$message}}</div>
                             @enderror
                         </div>
@@ -26,7 +26,7 @@
                         <div class="col-sm-10">
                             <div class="input-group input-group-merge">
                                 <span id="basic-icon-default-fullname2" class="input-group-text"><i class="fa fa-user"></i></span>
-                                <input type="text" class="form-control" name="name" id="basic-icon-default-fullname" placeholder="John Doe" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
+                                <input type="text" class="form-control" name="name" id="basic-icon-default-fullname" placeholder="Type Name" aria-label="John Doe" aria-describedby="basic-icon-default-fullname2" />
                             </div>
                             @error('name')
                             <div class="form-text text-danger">{{$message}}</div>

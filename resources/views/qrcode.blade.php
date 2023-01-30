@@ -18,31 +18,6 @@
             </div>
 
         </div>
-        <div class="col-8" id="attendance">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>
-                        Student Name
-                    </th>
-                    <th>
-                        Attendance Status
-                    </th>
-                    <th>Present Time</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($records as $rd)
-                    <tr>
-                        <td>{{$rd->student->name}}</td>
-                        <td>{{$rd->present?'Present':'Absent'}}</td>
-                        <td>{{$rd->present?date('h:i a', strtotime($rd->present_time)):''}}</td>
-                    </tr>
-                @endforeach
-                </tbody>
-
-            </table>
-        </div>
     </div>
     <script src="{{url(asset('js/http_rawgit.com_schmich_instascan-builds_master_instascan.min.js'))}}"></script>
     <script type="text/javascript">

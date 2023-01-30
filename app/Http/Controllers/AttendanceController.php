@@ -20,8 +20,8 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        $attendance=Attendance::with('major','user')->get();
-        return view('attendance.index',compact('attendance'));
+        $records=AttendentRecord::with('student')->get();
+        return view('attendance.index',compact('records'));
     }
 
     /**
@@ -84,20 +84,28 @@ class AttendanceController extends Controller
         $records=AttendentRecord::with('student')->where('attendance_id',$id)->get();
         return view('attendance.show',compact('attendance','records'));
     }
- public function record($id)
-    {
-        $attendance=Attendance::with('major')->where('id',$id)->first();
-        $records=AttendentRecord::with('student')->where('attendance_id',$id)->get();
-        return view('qrcode',compact('attendance','records'));
-    }
-    public function recorded(Request $request,$id)
+// public function record($id)
+//    {
+//        $attendance=Attendance::with('major')->where('id',$id)->first();
+//        $records=AttendentRecord::with('student')->where('attendance_id',$id)->get();
+//        return view('qrcode',compact('attendance','records'));
+//    }
+    public function recorded(Request $request)
     {
 //        dd($request->all());
         $student=Student::where('student_id',$request->student_id)->first();
-        $records=AttendentRecord::with('student')->where('attendance_id',$id)->where('student_id',$student->id)->first();
-        $records->present=1;
-        $records->present_time=Carbon::now();
-        $records->update();
+        $exists=AttendentRecord::whereDate('date',Carbon::today())->where('student_id',$student->id)->first();
+       if($exists!=null){
+          $exists->checkout=Carbon::now();
+          $exists->update();
+       }else{
+           $records=new AttendentRecord();
+           $records->student_id=$student->id;
+           $records->checkin=Carbon::now();
+           $records->date=Carbon::today();
+           $records->user_id=Auth::user()->id;
+           $records->save();
+       }
         return response()->json(['msg','Successful']);
     }
 

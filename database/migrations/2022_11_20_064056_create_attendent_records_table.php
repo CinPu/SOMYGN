@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('attendent_records', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('attendance_id')->unsigned();
             $table->bigInteger('student_id')->unsigned();
-            $table->dateTime('present_time')->nullable();
-            $table->tinyInteger('present')->default(0);
+            $table->dateTime('checkin')->nullable();
+            $table->dateTime('checkout')->nullable();
+            $table->bigInteger('user_id')->unsigned();
+            $table->dateTime('date');
             $table->timestamps();
         });
     }

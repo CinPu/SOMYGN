@@ -67,7 +67,8 @@ class UserController extends Controller
     public function show($id)
     {
         $user=User::with('major')->where('id',$id)->firstOrFail();
-        return view('user.show',compact('user'));
+        $major=Major::all();
+        return view('user.show',compact('user','major'));
     }
 
     /**
@@ -92,22 +93,38 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'name'=>'required',
-            'email'=>'required',
-            'phone'=>'required',
-
-
-        ]);
         $user=User::with('major')->where('id',$id)->firstOrFail();
-        $data=$request->all();
-        if ($request->hasfile('profile')) {
-            $file = $request->file('profile');
-            $name=$file->getClientOriginalName();
-            $file->move(public_path() . '/assets/profile/',$name);
-            $data['profile'] = $name;
-        }
-        $user->update($data);
+       if(isset($request->oldpass)){
+           $this->validate($request,[
+               'oldpass'=>'required',
+               'newpass'=>'required',
+
+
+           ]);
+          if(Hash::check($request->oldpass, $user->password)){
+              $user->password=Hash::make($request->newpass);
+              $user->update();
+          }else{
+              return redirect()->back();
+          }
+       }else{
+           $this->validate($request,[
+               'name'=>'required',
+               'email'=>'required',
+               'phone'=>'required',
+
+
+           ]);
+
+           $data=$request->all();
+           if ($request->hasfile('profile')) {
+               $file = $request->file('profile');
+               $name=$file->getClientOriginalName();
+               $file->move(public_path() . '/assets/profile/',$name);
+               $data['profile'] = $name;
+           }
+           $user->update($data);
+       }
         return redirect(route('user.index'))->with('message','Successful');
         //
     }
@@ -123,5 +140,9 @@ class UserController extends Controller
         $user=User::where('id',$id)->firstOrFail();
         $user->delete();
         return redirect(route('user.index'))->with('message','Successful');
+    }
+    public function changePass($id){
+        $user=User::where('id',$id)->first();
+        return view('user.passwordchange',compact('user'));
     }
 }
