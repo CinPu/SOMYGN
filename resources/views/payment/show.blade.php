@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title','Student Details')
+@section('title','Payment Receipt')
 @section('content')
 
     <div class="col-xxl">
