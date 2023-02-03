@@ -15,7 +15,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $payments=Payment::all();
+        $payments=Payment::with('student','user')->get();
         return view('payment.index',compact('payments'));
     }
 
@@ -43,7 +43,7 @@ class PaymentController extends Controller
         $student=Student::where('id',$request->student_id)->first();
         $student->paid=$student->paid+$request->amount;
         $student->update();
-        return redirect(route('payment.show',$payment->id));
+        return redirect(route('payments.show',$payment->id));
     }
 
     /**
@@ -54,7 +54,7 @@ class PaymentController extends Controller
      */
     public function show($id)
     {
-        $payment=Payment::where('id',$id)->first();
+        $payment=Payment::with('student','user')->where('id',$id)->first();
         return view('payment.show',compact('payment'));
     }
 

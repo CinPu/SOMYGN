@@ -34,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('change/password/{id}',[\App\Http\Controllers\UserController::class,'changePass']);
     Route::get('student/prefix',[\App\Http\Controllers\SettingController::class,'prefix']);
     Route::post('prefix/update/{id}',[\App\Http\Controllers\SettingController::class,'prefixUpdate']);
+    Route::resource('payments',\App\Http\Controllers\PaymentController::class);
 });
 
 Auth::routes();

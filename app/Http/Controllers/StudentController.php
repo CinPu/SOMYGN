@@ -130,27 +130,32 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
-            'name'=>'required',
-            'student_id'=>'required',
-            'phone'=>'required',
-            'email'=>'required',
-            'fee'=>'nullable',
-            'major_id'=>'required',
-            'paid'=>'required',
-            'address'=>'required',
+        try {
+            $this->validate($request, [
+                'name' => 'required',
+                'student_id' => 'required',
+                'phone' => 'required',
+                'email' => 'required',
+                'fee' => 'nullable',
+                'major_id' => 'required',
+                'paid' => 'required',
 
-        ]);
-        $student=Student::where('id',$id)->firstOrFail();
-        $data=$request->all();
-        if ($request->hasfile('profile')) {
-            $file = $request->file('profile');
-            $name=$file->getClientOriginalName();
-            $file->move(public_path() . '/assets/profile/',$name);
-            $data['profile'] = $name;
+
+            ]);
+            $student = Student::where('id', $id)->firstOrFail();
+            $data = $request->all();
+            if ($request->hasfile('profile')) {
+                $file = $request->file('profile');
+                $name = $file->getClientOriginalName();
+                $file->move(public_path() . '/assets/profile/', $name);
+                $data['profile'] = $name;
+            }
+            $student->update($data);
+            return redirect(route('students.index'))->with('message','Success');
+        }catch (\Exception $e){
+            dd($e->getMessage());
         }
-        $student->update($data);
-        return redirect(route('students.index'))->with('message','Success');
+
     }
 
     /**

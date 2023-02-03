@@ -17,7 +17,7 @@
     <!-- Canonical SEO -->
     <link rel="canonical" href="https://themeselection.com/item/sneat-bootstrap-html-laravel-admin-template/">
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="http://localhost:8000/assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="{{url(asset('assets/profile/mainlogo.jpg'))}}" />
 
     <!-- Include Styles -->
     <!-- BEGIN: Theme CSS-->

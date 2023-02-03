@@ -7,7 +7,7 @@
                 <h5 class="mb-0">Add Student</h5>
             </div>
             <div class="card-body">
-                <form action="{{route('students.update',$student->id)}}" method="POST">
+                <form action="{{route('students.update',$student->id)}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row mb-3">

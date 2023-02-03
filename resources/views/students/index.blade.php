@@ -38,7 +38,7 @@
                                <td>
                                    {{$st->major->name??'Removed This Major'}}
                                </td>
-                               <td>{{$st->minor1->name??'Removed This Minor'}}</td>
+                               <td title="Hello">{{$st->minor1->name??'Removed This Minor'}}</td>
                                <td>{{$st->minor2->name??'N/A'}}</td>
                                <td>{{$st->elective_course==0?'N/A':'Take'}}</td>
                                <td><span class="badge bg-label-primary me-1">{{$st->fee}}</span></td>
