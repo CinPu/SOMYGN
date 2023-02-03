@@ -15,6 +15,6 @@ class SettingController extends Controller
         $prefix=StudentIdPrefix::where('id',$id)->first();
         $prefix->prefix=$request->prefix;
         $prefix->update();
-        return redirect()->back();
+        return redirect(route('students.create'));
     }
 }
