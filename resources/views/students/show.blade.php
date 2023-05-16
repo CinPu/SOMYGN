@@ -67,7 +67,7 @@
                 </div>
                 <div class="float-right">
                     <img src="{{url(asset('/qrcode/'.$student->student_id.'.png'))}}" alt=""><br><br>
-                    <a href="{{url(asset('/qrcode/'.$student->student_id.'.png'))}}" download="">Download QR Code</a>
+                    <a href="{{url(asset('/qrcode/'.$student->student_id.'.png'))}}" download="">Download <br>QR Code</a>
                 </div>
             </div>
             <div class="card-body">
