@@ -31,8 +31,10 @@
                        </thead>
                        <tbody class="table-border-bottom-0">
                        @foreach($student as $st)
+
                            <tr class="table-default">
                                <td><img src="{{asset('assets/profile/'.$st->profile)}}" style="max-height: 40px;max-width: 40px" alt=""></td>
+
                                <td><strong>{{$st->student_id}}</strong></td>
                                <td>{{$st->name}}</td>
                                <td>

@@ -10,6 +10,12 @@
                         <div class="col-md-3 col-3">
                                 <img src="{{url(asset('assets/profile/'.$student->profile))}}" alt="" width="100" height="100">
                             <div class="col-2 col-md-2 my-5">{!! DNS2D::getBarcodeSVG($student->student_id, 'QRCODE',3,3);!!}</div>
+                            @php
+                                if(!file_exists(public_path().'/qrcode/'.$student->student_id.'.png')){
+                                    file_put_contents(public_path().'/qrcode/'.$student->student_id.'.png', base64_decode(DNS2D::getBarcodePNG($student->student_id, 'QRCODE',3,3)));
+
+                                }
+                            @endphp
                         </div>
                         <div class="col-md-6 col-6">
                             <div class="col-12 text-center">
@@ -58,6 +64,10 @@
             <div class="card-header d-flex align-items-center justify-content-between">
                 <div class="card shadow">
                     <img src="{{url(asset('assets/profile/'.$student->profile))}}" alt="" width="100px" height="100px">
+                </div>
+                <div class="float-right">
+                    <img src="{{url(asset('/qrcode/'.$student->student_id.'.png'))}}" alt=""><br><br>
+                    <a href="{{url(asset('/qrcode/'.$student->student_id.'.png'))}}" download="">Download QR Code</a>
                 </div>
             </div>
             <div class="card-body">
@@ -146,6 +156,7 @@
                     </div>
                     <div class="col-9">
                         {{$student->created_at->toFormattedDateString()}}
+
                     </div>
 
                 </div>
@@ -155,8 +166,7 @@
                </div>
             </div>
         </div>
-        <div id="print_me"  style="visibility: hidden"></div>
-            <a href="" id="print" class="btn btn-primary" onclick="printContent('print_me');" ><i class="fa fa-print"></i> Print Card</a>
+
 
     </div>
 

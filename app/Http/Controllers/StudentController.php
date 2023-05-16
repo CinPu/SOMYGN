@@ -6,6 +6,7 @@ use App\Models\Major;
 use App\Models\Student;
 use App\Models\StudentIdPrefix;
 use Illuminate\Http\Request;
+use Milon\Barcode\DNS2D;
 
 class StudentController extends Controller
 {
@@ -104,6 +105,7 @@ class StudentController extends Controller
     public function show($id)
     {
         $student=Student::with('major','minor1','minor2')->where('id',$id)->firstOrFail();
+
 //        dd($student);
         return view('students.show',compact('student'));
     }
