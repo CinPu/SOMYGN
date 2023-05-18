@@ -4,29 +4,30 @@
     <div class="row">
         <div class="col-12 col-md-8 col-lg-8 order-3 order-md-2 order-1">
             <div class="card" style="min-height: 400px;max-height: 400px;overflow: auto">
-                <table class="table" >
+                <table class="table" style="min-height: 200px" id="attendance">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Class</th>
-                        <th>Total Fee</th>
-                        <th>Paid Fee</th>
-                        <th>Due Fee</th>
+                        <th>Date</th>
+                        <th>Student Name</th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
                     </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                    @foreach($student as $st)
+                    @foreach($records as $record)
                         <tr class="table-default">
-                            <td><strong>{{$st->student_id}}</strong></td>
-                            <td>{{$st->name}}</td>
+                            <td>{{\Carbon\Carbon::parse($record->date)->toFormattedDateString()}}</td>
+                            <td>{{$record->student->name}}</td>
+                            {{--<td>{{$->major->name}}</td>--}}
+                            {{--<td>{{date('h:i a', strtotime($attendance->class_start_time))}}</td>--}}
+                            <td>{{date('h:i a', strtotime($record->checkin))}}</td>
                             <td>
-                                {{$st->major->name??'Removed This Major'}}
+                                @if($record->checkout==null)
+                                    N/A
+                                @else
+                                    {{date('h:i a', strtotime($record->checkout??'N/A'))}}
+                                @endif
                             </td>
-                            <td><span class="badge bg-label-primary me-1">{{$st->fee}}</span></td>
-                            <td><span class="badge bg-label-success me-1">{{$st->paid}}</span></td>
-                            <td><span class="badge bg-label-danger me-1">{{$st->fee-$st->paid}}</span></td>
-
                         </tr>
                     @endforeach
                     </tbody>

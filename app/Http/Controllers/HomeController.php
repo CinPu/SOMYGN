@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AttendentRecord;
 use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -26,6 +27,7 @@ class HomeController extends Controller
     public function index()
     {
         $student=Student::with('major')->get();
+        $records=AttendentRecord::with('student')->get();
         $paid=0;
         $due=0;
         foreach ($student as $st){
@@ -33,7 +35,7 @@ class HomeController extends Controller
             $due+=($st->fee-$st->paid);
         }
 
-        return view('home',compact('student','paid','due'));
+        return view('home',compact('records','paid','due','student'));
     }
     public function qr_scanner(){
         return view('qrcode');
