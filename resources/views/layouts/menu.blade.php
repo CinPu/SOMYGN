@@ -4,9 +4,9 @@
     <!-- ! Hide app brand if navbar-full -->
     <div class="app-brand demo">
         <a href="http://localhost:8000" class="app-brand-link">
-                    {{--<span class="app-brand-logo demo">--}}
-                        {{--<img src="{{url(asset('assets/profile/mainlogo.jpg'))}}" width="100" height="100" alt="">--}}
-                    {{--</span>--}}
+                    <span class="app-brand-logo demo">
+                        <img src="{{url(asset('assets/logo.png'))}}" width="50" height="50" alt="">
+                    </span>
             <span class="demo menu-text fw-bold ms-2" style="font-size: 24px">School Of Music</span>
         </a>
         

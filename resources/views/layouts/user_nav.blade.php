@@ -31,7 +31,12 @@
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="{{route('user.show',\Illuminate\Support\Facades\Auth::user()->id)}}" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
+                        @if(\Illuminate\Support\Facades\Auth::user()->profile==null)
+                            <img src="{{url(asset('assets/profile/default_profile.jpg'))}}" alt class="w-px-40 h-auto rounded-circle">
+
+                        @else
                         <img src="{{url(asset('assets/profile/'.\Illuminate\Support\Facades\Auth::user()->profile))}}" alt class="w-px-40 h-auto rounded-circle">
+                            @endif
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
@@ -40,7 +45,13 @@
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
+                                        @if(\Illuminate\Support\Facades\Auth::user()->profile==null)
+                                            <img src="{{url(asset('assets/profile/default_profile.jpg'))}}" alt class="w-px-40 h-auto rounded-circle">
+
+                                        @else
+
                                         <img src="{{url(asset('assets/profile/'.\Illuminate\Support\Facades\Auth::user()->profile))}}" alt class="w-px-40 h-auto rounded-circle">
+                                            @endif
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">

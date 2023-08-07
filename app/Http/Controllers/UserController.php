@@ -145,4 +145,13 @@ class UserController extends Controller
         $user=User::where('id',$id)->first();
         return view('user.passwordchange',compact('user'));
     }
+    public function forgot_password(){
+        return view('auth.passwords/reset');
+    }
+    public function reset(Request $request){
+        $user=User::where('email',$request->email)->first();
+        $user->password=Hash::make($request->password);
+        $user->update();
+        return redirect('login');
+    }
 }

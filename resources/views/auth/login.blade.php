@@ -3,33 +3,34 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body, html {
-            height: 100%;
-            margin: 0;
-        }
-
-        .bg {
+        /* Apply the background image to the <body> element for full-page coverage */
+        body {
             /* The image used */
-            background-image: url("../assets/school-of-music-banner.jpg");
+            background-image: url("../assets/bg2.png");
 
-            /* Full height */
-            height: 100%;
+            /* Full height and width */
+            height: 100%; /* 100% of the viewport height */
+            width: 100%; /* 100% of the viewport width */
 
-            /* Center and scale the image nicely */
+            /* Center the image horizontally and vertically */
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed;
+
+            /* Scale the image to cover the entire element */
             background-size: cover;
-            position: fixed;
-            width: 100%;
+
+            /* Make the background fixed while the content scrolls */
+            background-attachment: fixed;
+
         }
+
     </style>
     @include('layouts.header')
 </head>
-<body>
+<body style="background-color:#b0b5b7">
 
-<div class="bg">
-    <div class="col-md-4 offset-md-8 col-10 offset-1 col-sm-10 offset-sm-1 my-5">
+
+    <div class="col-xl-4 col-md-6 offset-xl-8 offset-md-3 col-12 offset-0 col-sm-12 offset-sm-0 my-5 ">
         <div class="container-xxl">
             <div class="authentication-wrapper authentication-basic container-p-y my-5">
                 <div class="authentication-inner">
@@ -38,14 +39,21 @@
                         <div class="card-body">
                             <!-- Logo -->
                             <div class="app-brand justify-content-center">
-                                <a href="{{url('/')}}" class="app-brand-link gap-2">
-                                    <span class="app-brand-logo demo">@include('_partials.macros',["width"=>25,"withbg"=>'#696cff'])</span>
-                                    <span class="app-brand-text demo text-body fw-bolder">{{config('variables.templateName')}}</span>
-                                </a>
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-4 col-6">
+                                        <a href="{{url('/')}}" class="app-brand-link gap-2">
+                                            <span class="app-brand-logo demo"><img src="{{url(asset('assets/logo.png'))}}" class="rounded-circle" width="5%"></span>
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <h4 class="mb-2">Welcome to</h4>
+                                        <h4>School Of Music</h4>
+                                        <p class="mb-4">Please sign-in to your account </p>
+                                    </div>
+                                </div>
                             </div>
                             <!-- /Logo -->
-                            <h4 class="mb-2">Welcome to School Of Music</h4>
-                            <p class="mb-4">Please sign-in to your account </p>
+
 
                             <form id="formAuthentication" class="mb-3" action="{{route('login')}}" method="POST">
                                 @csrf
@@ -56,7 +64,7 @@
                                 <div class="mb-3 form-password-toggle">
                                     <div class="d-flex justify-content-between">
                                         <label class="form-label" for="password">Password</label>
-                                        <a href="{{url('auth/forgot-password-basic')}}">
+                                        <a href="{{url('forgot/password')}}">
                                             <small>Forgot Password?</small>
                                         </a>
                                     </div>
@@ -79,7 +87,7 @@
             </div>
         </div>
     </div>
-</div>
+
 @include('layouts.footer')
 </body>
 </html>

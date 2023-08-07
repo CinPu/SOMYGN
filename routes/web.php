@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('prefix/update/{id}',[\App\Http\Controllers\SettingController::class,'prefixUpdate']);
     Route::resource('payments',\App\Http\Controllers\PaymentController::class);
 });
-
+Route::get('forgot/password',[\App\Http\Controllers\UserController::class,'forgot_password']);
+Route::post('reset',[\App\Http\Controllers\UserController::class,'reset']);
 Auth::routes();
 
