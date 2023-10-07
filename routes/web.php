@@ -39,4 +39,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get('forgot/password',[\App\Http\Controllers\UserController::class,'forgot_password']);
 Route::post('reset',[\App\Http\Controllers\UserController::class,'reset']);
 Auth::routes();
+Route::get('test',function (){
+   return view('welcome');
+});
 

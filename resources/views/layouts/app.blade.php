@@ -91,69 +91,41 @@
 <!--/ Layout Content -->
 
 @include('layouts.footer')
-<script src="{{url(asset('js/http_rawgit.com_schmich_instascan-builds_master_instascan.min.js'))}}"></script>
 <script type="text/javascript">
-    var scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 5, mirror: false });
-    scanner.addListener('scan',function(content){
-        if(content==''){
+    $(document).ready(function () {
+        $('#barcodeInput').focus();
+        // Listen for keyboard input in the barcode input field
+        $('#barcodeInput').on('keydown', function (e) {
+            // Check if the Enter key was pressed (or other trigger key)
+            if (e.which === 13) {
+                // Barcode data is in the input field value
+                var qrcode = $(this).val();
+                $.ajax({
+                    type: 'POST',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        'student_id':qrcode
 
-        }else {
-            newfunction(content);
-            $('#sound').get(0).play();
-            alert(content+' is present now!');
+                    },
+                    url: "{{url('record/attendance')}}",
+                    headers: {'XSRF-TOKEN': $('meta[name="_token"]').attr('content')},
+                    success: function (data) {
+                        console.log(data);
 
-        }
-        //window.location.href=content;
-    });
-    function newfunction(qrcode){
-        $.ajax({
-            type: 'POST',
-            data: {
-                "_token": "{{ csrf_token() }}",
-                'student_id':qrcode
-
-            },
-            url: "{{url('record/attendance')}}",
-            headers: {'XSRF-TOKEN': $('meta[name="_token"]').attr('content')},
-            success: function (data) {
-                console.log(data);
-
-                window.location.reload();
+                        window.location.reload();
 
 
-            },
-            error: function(data){
-                alert('Something Wrong!Try again')
+                    },
+                    error: function(data){
+                        alert('Something Wrong!Try again')
+                    }
+
+
+                });
+                // Clear the input field for the next scan
+                $(this).val('');
             }
-
-
         });
-    }
-    Instascan.Camera.getCameras().then(function (cameras){
-        if(cameras.length>0){
-            scanner.start(cameras[0]);
-            $('[name="options"]').on('change',function(){
-                if($(this).val()==1){
-                    if(cameras[0]!=""){
-                        scanner.start(cameras[0]);
-                    }else{
-                        alert('No Front camera found!');
-                    }
-                }else if($(this).val()==2){
-                    if(cameras[1]!=""){
-                        scanner.start(cameras[1]);
-                    }else{
-                        alert('No Back camera found!');
-                    }
-                }
-            });
-        }else{
-            console.error('No cameras found.');
-            alert('No cameras found.');
-        }
-    }).catch(function(e){
-        console.error(e);
-        alert(e);
     });
 </script>
 </body>

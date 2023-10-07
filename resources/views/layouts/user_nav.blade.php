@@ -12,6 +12,7 @@
     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
         <!-- Search -->
         <div class="navbar-nav align-items-center">
+            <input type="text" class="form-control" id="barcodeInput" placeholder="Student ID From Scanner">
             <div class="nav-item d-flex align-items-center">
                 <i class="bx bx-search fs-4 lh-0"></i>
                 @yield('search_bar')
